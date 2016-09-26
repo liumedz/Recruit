@@ -5,41 +5,41 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Candidates.DataAccess.Repository.Abstractions;
+using Candidates.DataAccess.Repository;
+using Candidates.DataAccess.Entities;
+
 namespace Candidates.Api.Controllers
 {
     public class CandidateController : ApiController
     {
-        private ICandidateRepository repository;
+        private ICandidateRepository _repository;
 
         public CandidateController(ICandidateRepository repository)
         {
-            this.repository = repository;
+            _repository = repository;
         }
         public CandidateController()
         {
-
+            _repository = new CandidateRepository();
         }
         // GET: api/Candidate
-        public IEnumerable<string> Get()
+        public IEnumerable<Candidate> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _repository.GetCandidates();
         }
-
-        // GET: api/Candidate/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
+        
         // POST: api/Candidate
-        public void Post([FromBody]string value)
+        public int Post([FromBody]Candidate candidate)
         {
+            _repository.SaveCandidate(candidate);
+            return candidate.Id;
         }
 
         // DELETE: api/Candidate/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
-
+            _repository.DeleteCandidate(id);
+            return Ok();
         }
     }
 }
