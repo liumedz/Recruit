@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using Candidates.DataAccess.Repository.Abstractions;
-using Candidates.DataAccess.Repository;
 using Candidates.DataAccess.Entities;
-using System.Configuration;
 
 namespace Candidates.Api.Controllers
 {
@@ -18,11 +12,6 @@ namespace Candidates.Api.Controllers
         public CandidateController(ICandidateRepository repository)
         {
             _repository = repository;
-        }
-        public CandidateController()
-        {
-            var cs = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
-            _repository = new CandidateRepository(cs);
         }
         // GET: api/Candidate
         public IEnumerable<Candidate> Get()

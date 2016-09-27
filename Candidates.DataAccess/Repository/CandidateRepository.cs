@@ -3,7 +3,6 @@ using Candidates.DataAccess.Repository.Abstractions;
 using System.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Candidates.DataAccess.Repository
 {

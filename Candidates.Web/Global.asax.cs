@@ -20,7 +20,7 @@ namespace Candidates.Web
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
+            UnityConfig.RegisterComponents();
             var cs = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
             DbInitializer.EnsureCreated(cs);
         }
