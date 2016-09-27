@@ -18,12 +18,16 @@ namespace Candidates.Api.Controllers
         {
             return _repository.Get();
         }
-        
+
         // POST: api/Candidate
-        public int Post([FromBody]Candidate candidate)
+        public IHttpActionResult Post([FromBody]Candidate candidate)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _repository.Save(candidate);
-            return candidate.Id;
+            return Ok(candidate.Id);
         }
 
         // DELETE: api/Candidate/5
