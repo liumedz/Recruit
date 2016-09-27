@@ -9,19 +9,16 @@ namespace Candidates.DataAccess.Repository
 {
     public class CandidateRepository : ICandidateRepository
     {
-        private string connectionString { get; set; }
+        private string _connectionString { get; set; }
 
         public CandidateRepository(string connectionString)
         {
-            this.connectionString = connectionString;
+            _connectionString = connectionString;
         }
-        public CandidateRepository()
+
+        public void Delete(int id)
         {
-            connectionString = "Data Source=.;Initial Catalog=Recruit;Integrated Security=True";
-        }
-        public void DeleteCandidate(int id)
-        {
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             using (var cmd = connection.CreateCommand())
             {
                 connection.Open();
@@ -31,9 +28,9 @@ namespace Candidates.DataAccess.Repository
             }
         }
 
-        public void SaveCandidate(Candidate candidate)
+        public void Save(Candidate candidate)
         {
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             using (var cmd = connection.CreateCommand())
             {
                 connection.Open();
@@ -60,10 +57,10 @@ namespace Candidates.DataAccess.Repository
             }
         }
 
-        public IEnumerable<Candidate> GetCandidates()
+        public IEnumerable<Candidate> Get()
         {
             var list = new List<Candidate>();
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             using (var cmd = connection.CreateCommand())
             {
                 connection.Open();

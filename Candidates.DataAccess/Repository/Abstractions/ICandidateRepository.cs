@@ -5,8 +5,8 @@ namespace Candidates.DataAccess.Repository.Abstractions
 {
     public interface ICandidateRepository
     {
-        void DeleteCandidate(int id);
-        void SaveCandidate(Candidate candidate);
-        IEnumerable<Candidate> GetCandidates();
+        void Delete(int id);
+        void Save(Candidate candidate);
+        IEnumerable<Candidate> Get();
     }
 }

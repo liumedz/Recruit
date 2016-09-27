@@ -102,69 +102,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bower_components\knockout\build\fragments\amd-post.js" />
-    <Content Include="bower_components\knockout\build\fragments\amd-pre.js" />
-    <Content Include="bower_components\knockout\build\fragments\extern-post.js" />
-    <Content Include="bower_components\knockout\build\fragments\extern-pre.js" />
-    <Content Include="bower_components\knockout\build\fragments\source-references.js" />
-    <Content Include="bower_components\knockout\build\knockout-raw.js" />
-    <Content Include="bower_components\knockout\dist\knockout.debug.js" />
-    <Content Include="bower_components\knockout\dist\knockout.js" />
-    <Content Include="bower_components\knockout\Gruntfile.js" />
-    <Content Include="bower_components\knockout\src\binding\bindingAttributeSyntax.js" />
-    <Content Include="bower_components\knockout\src\binding\bindingProvider.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\attr.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\checked.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\click.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\css.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\enableDisable.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\event.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\foreach.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\hasfocus.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\html.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\ifIfnotWith.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\options.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\selectedOptions.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\style.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\submit.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\text.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\textInput.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\uniqueName.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\value.js" />
-    <Content Include="bower_components\knockout\src\binding\defaultBindings\visible.js" />
-    <Content Include="bower_components\knockout\src\binding\editDetection\arrayToDomNodeChildren.js" />
-    <Content Include="bower_components\knockout\src\binding\editDetection\compareArrays.js" />
-    <Content Include="bower_components\knockout\src\binding\expressionRewriting.js" />
-    <Content Include="bower_components\knockout\src\binding\selectExtensions.js" />
-    <Content Include="bower_components\knockout\src\components\componentBinding.js" />
-    <Content Include="bower_components\knockout\src\components\customElements.js" />
-    <Content Include="bower_components\knockout\src\components\defaultLoader.js" />
-    <Content Include="bower_components\knockout\src\components\loaderRegistry.js" />
-    <Content Include="bower_components\knockout\src\google-closure-compiler-utils.js" />
-    <Content Include="bower_components\knockout\src\memoization.js" />
-    <Content Include="bower_components\knockout\src\namespace.js" />
-    <Content Include="bower_components\knockout\src\options.js" />
-    <Content Include="bower_components\knockout\src\subscribables\dependencyDetection.js" />
-    <Content Include="bower_components\knockout\src\subscribables\dependentObservable.js" />
-    <Content Include="bower_components\knockout\src\subscribables\extenders.js" />
-    <Content Include="bower_components\knockout\src\subscribables\mappingHelpers.js" />
-    <Content Include="bower_components\knockout\src\subscribables\observable.js" />
-    <Content Include="bower_components\knockout\src\subscribables\observableArray.changeTracking.js" />
-    <Content Include="bower_components\knockout\src\subscribables\observableArray.js" />
-    <Content Include="bower_components\knockout\src\subscribables\subscribable.js" />
-    <Content Include="bower_components\knockout\src\tasks.js" />
-    <Content Include="bower_components\knockout\src\templating\jquery.tmpl\jqueryTmplTemplateEngine.js" />
-    <Content Include="bower_components\knockout\src\templating\native\nativeTemplateEngine.js" />
-    <Content Include="bower_components\knockout\src\templating\templateEngine.js" />
-    <Content Include="bower_components\knockout\src\templating\templateRewriting.js" />
-    <Content Include="bower_components\knockout\src\templating\templateSources.js" />
-    <Content Include="bower_components\knockout\src\templating\templating.js" />
-    <Content Include="bower_components\knockout\src\utils.domData.js" />
-    <Content Include="bower_components\knockout\src\utils.domManipulation.js" />
-    <Content Include="bower_components\knockout\src\utils.domNodeDisposal.js" />
-    <Content Include="bower_components\knockout\src\utils.js" />
-    <Content Include="bower_components\knockout\src\version.js" />
-    <Content Include="bower_components\knockout\src\virtualElements.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -177,11 +114,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="bower_components\knockout\.bower.json" />
-    <Content Include="bower_components\knockout\bower.json" />
-    <Content Include="bower_components\knockout\LICENSE" />
-    <Content Include="bower_components\knockout\package.json" />
-    <Content Include="bower_components\knockout\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -214,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bower_components\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
