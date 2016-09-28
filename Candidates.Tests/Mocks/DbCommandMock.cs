@@ -11,6 +11,9 @@ namespace Candidates.Tests.Mocks
     class DbCommandMock : IDbCommand
     {
         private SqlCommand _sqlCommand;
+        public IDataReader DataReader { get; set; }
+
+
 
         public bool NonQueryExecuted { get; set; }
         public bool ReaderExecuted { get; set; }
@@ -115,7 +118,7 @@ namespace Candidates.Tests.Mocks
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
 
         public int ExecuteNonQuery()
@@ -127,7 +130,7 @@ namespace Candidates.Tests.Mocks
         public IDataReader ExecuteReader()
         {
             ReaderExecuted = true;
-            return null;
+            return DataReader;
         }
 
         public IDataReader ExecuteReader(CommandBehavior behavior)

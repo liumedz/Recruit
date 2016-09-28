@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
 using System.Web.Http;
 using System.Configuration;
 using Candidates.DataAccess;
+using System.Data.SqlClient;
 
 namespace Candidates.Web
 {
@@ -21,8 +18,18 @@ namespace Candidates.Web
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             UnityConfig.RegisterComponents();
+
+
             var cs = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
-            DbInitializer.EnsureCreated(cs);
+            var csBuilder = new SqlConnectionStringBuilder(cs);
+            var databaseName = csBuilder.InitialCatalog;
+
+            csBuilder.InitialCatalog = "master";
+            var dbInitializer = new DbInitializer();
+            var created = dbInitializer.EnsureCreated(new SqlConnection(csBuilder.ToString()), databaseName);
+
+            if (created)
+                dbInitializer.CreateTables(new SqlConnection(cs));
         }
     }
 }

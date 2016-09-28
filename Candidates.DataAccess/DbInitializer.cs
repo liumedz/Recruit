@@ -1,40 +1,35 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
 
 namespace Candidates.DataAccess
 {
-    public static class DbInitializer
+    public class DbInitializer
     {
-        public static void EnsureCreated(string connectionString)
+        public bool EnsureCreated(IDbConnection connection, string databaseName)
         {
-            var connectionStringBuilder = new SqlConnectionStringBuilder(connectionString);
-            var databaseName = connectionStringBuilder.InitialCatalog;
+            connection.Open();
 
-            connectionStringBuilder.InitialCatalog = "master";
-
-            using (var connection = new SqlConnection(connectionStringBuilder.ToString()))
+            using (var cmd = connection.CreateCommand())
             {
-                connection.Open();
-
-                using (var cmd = connection.CreateCommand())
+                cmd.CommandText = $"SELECT * FROM sysdatabases WHERE name='{databaseName}'";
+                using (var reader = cmd.ExecuteReader())
                 {
-                    cmd.CommandText = string.Format("SELECT * FROM master.dbo.sysdatabases WHERE name='{0}'", databaseName);
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read()) 
-                            return;
-                    }
-
-                    cmd.CommandText = string.Format("CREATE DATABASE {0}", databaseName);
-                    cmd.ExecuteNonQuery();
+                    if (reader.Read())
+                        return false;
                 }
-            }
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
 
-                using (var cmd = connection.CreateCommand())
-                {
-                    cmd.CommandText = @"
+                cmd.CommandText = $"CREATE DATABASE {databaseName}";
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
+            return true;
+        }
+        public void CreateTables(IDbConnection connection)
+        {
+            connection.Open();
+
+            using (var cmd = connection.CreateCommand())
+            {
+                cmd.CommandText = @"
                     CREATE TABLE Candidates 
                        (id int IDENTITY(1,1),  
                         firstName text NULL,  
@@ -42,9 +37,9 @@ namespace Candidates.DataAccess
                         email text NULL,
 	                    comment text NULL,
 	                    created datetime NULL)";
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.ExecuteNonQuery();
             }
+            connection.Close();
         }
     }
 }
