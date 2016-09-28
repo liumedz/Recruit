@@ -20,7 +20,7 @@ namespace Candidates.DataAccess
                     cmd.CommandText = string.Format("SELECT * FROM master.dbo.sysdatabases WHERE name='{0}'", databaseName);
                     using (var reader = cmd.ExecuteReader())
                     {
-                        if (reader.HasRows) 
+                        if (reader.Read()) 
                             return;
                     }
 

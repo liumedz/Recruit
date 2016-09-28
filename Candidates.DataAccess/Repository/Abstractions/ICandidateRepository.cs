@@ -8,5 +8,6 @@ namespace Candidates.DataAccess.Repository.Abstractions
         void Delete(int id);
         void Save(Candidate candidate);
         IEnumerable<Candidate> Get();
+        Candidate Get(int id);
     }
 }

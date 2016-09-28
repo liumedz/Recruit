@@ -9,6 +9,6 @@ namespace Candidates.DataAccess.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Comment { get; set; }
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
     }
 }

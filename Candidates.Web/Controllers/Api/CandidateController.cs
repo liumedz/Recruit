@@ -26,6 +26,12 @@ namespace Candidates.Api.Controllers
             {
                 return BadRequest();
             }
+            if (candidate.Id != 0)
+            {
+                var c = _repository.Get(candidate.Id);
+                if (c == null)
+                    return NotFound();
+            }
             _repository.Save(candidate);
             return Ok(candidate.Id);
         }
@@ -33,6 +39,10 @@ namespace Candidates.Api.Controllers
         // DELETE: api/Candidate/5
         public IHttpActionResult Delete(int id)
         {
+            var c = _repository.Get(id);
+            if (c == null)
+                return NotFound();
+
             _repository.Delete(id);
             return Ok();
         }
