@@ -6,7 +6,7 @@
 <script src="~/Scripts/candidates.js"></script>
 }
 <h2>Candidates</h2>
-<btn class="btn btn-primary" data-bind='click: addCandidate'>Add</btn>
+<btn class="btn btn-primary" data-bind='click: add'>Add</btn>
 <div id="candidates">
     <table class="table table-hover">
         <thead>
@@ -26,7 +26,7 @@
                 <td><input class='form-control' data-bind='value: Comment' /></td>
                 <td><input class='form-control' disabled data-bind='value: Created' /></td>
                 <td><btn class="btn btn-success" data-bind='click: $root.save'>Save</btn></td>
-                <td><btn class="btn btn-danger" data-bind='click: $root.deleteCandidate'>Delete</btn></td>
+                <td><btn class="btn btn-danger" data-bind='click: $root.delete'>Delete</btn></td>
             </tr>
         </tbody>
     </table>

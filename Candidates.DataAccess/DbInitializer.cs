@@ -2,9 +2,9 @@
 
 namespace Candidates.DataAccess
 {
-    public class DbInitializer
+    public class DbInitializer : IDbInitializer
     {
-        public bool EnsureCreated(IDbConnection connection, string databaseName)
+        public bool EnsureDatabaseCreated(IDbConnection connection, string databaseName)
         {
             connection.Open();
 
@@ -32,11 +32,11 @@ namespace Candidates.DataAccess
                 cmd.CommandText = @"
                     CREATE TABLE Candidates 
                        (id int IDENTITY(1,1),  
-                        firstName text NULL,  
-                        lastName text NULL,  
-                        email text NULL,
+                        firstName text NOT NULL,  
+                        lastName text NOT NULL,  
+                        email text NOT NULL,
 	                    comment text NULL,
-	                    created datetime NULL)";
+	                    created datetime NOT NULL)";
                 cmd.ExecuteNonQuery();
             }
             connection.Close();

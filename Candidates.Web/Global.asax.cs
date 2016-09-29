@@ -19,15 +19,16 @@ namespace Candidates.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             UnityConfig.RegisterComponents();
 
-
+            var resolver = GlobalConfiguration.Configuration.DependencyResolver;
+            var dbInitializer = (IDbInitializer) resolver.GetService(typeof(IDbInitializer));
             var cs = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
             var csBuilder = new SqlConnectionStringBuilder(cs);
             var databaseName = csBuilder.InitialCatalog;
 
             csBuilder.InitialCatalog = "master";
-            var dbInitializer = new DbInitializer();
-            var created = dbInitializer.EnsureCreated(new SqlConnection(csBuilder.ToString()), databaseName);
 
+            var created = dbInitializer.EnsureDatabaseCreated(new SqlConnection(csBuilder.ToString()), databaseName);
+            
             if (created)
                 dbInitializer.CreateTables(new SqlConnection(cs));
         }

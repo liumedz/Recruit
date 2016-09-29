@@ -21,7 +21,7 @@ namespace Candidates.Tests
 
             csBuilder.InitialCatalog = "master";
             var dbInitializer = new DbInitializer();
-            var created = dbInitializer.EnsureCreated(dbConnection, databaseName);
+            var created = dbInitializer.EnsureDatabaseCreated(dbConnection, databaseName);
 
             Assert.Equal(false, dbCommand.ScalarExecuted);
             Assert.Equal(true, dbCommand.NonQueryExecuted);
@@ -41,7 +41,7 @@ namespace Candidates.Tests
 
             csBuilder.InitialCatalog = "master";
             var dbInitializer = new DbInitializer();
-            dbInitializer.EnsureCreated(dbConnection, databaseName);
+            dbInitializer.EnsureDatabaseCreated(dbConnection, databaseName);
 
             Assert.Equal(false, dbCommand.ScalarExecuted);
             Assert.Equal(false, dbCommand.NonQueryExecuted);

@@ -1,16 +1,23 @@
-﻿function CandidatesViewModel(candidates) {
+﻿function candidatesViewModel(k, candidateService) {
     var self = this;
 
-    this.candidates = ko.observableArray(candidates);
-    this.deleteCandidate = function(candidate){
+    self.candidates = k.observableArray();
+    candidateService.get(self.candidates)
+    this.delete = function (candidate) {
         self.candidates.remove(candidate);
-        $.ajax({
-            url: "api/candidate/" + candidate.Id,
-            type: "DELETE"
-        })
+        if (candidate.Id != 0)
+            candidateService.delete(candidate)
     }
-    this.addCandidate = function () {
-        var candidate = { Id : 0, FirstName: "", LastName: "", Email: "", Comment: "", Created: "" }
+    this.add = function () {
+        var candidate = { Id: 0, FirstName: "", LastName: "", Email: "", Comment: "", Created: "" }
+        self.candidates.push(candidate)
+    }
+    this.save = function () {
+        candidateService.save(this);
+    }
+}
+function candidateService() {
+    this.save = function (candidate) {
         $.ajax({
             url: "api/candidate",
             type: "POST",
@@ -19,22 +26,24 @@
             contentType: "application/json",
             success: function (id) {
                 candidate.Id = id;
-                self.candidates.push(candidate)
             }
         });
     }
-    this.save = function(){
+    this.delete = function (candidate) {
         $.ajax({
-            url: "api/candidate",
-            type: "POST",
-            data: JSON.stringify(this),
-            dataType: "json",
-            contentType: "application/json"
+            url: "api/candidate/" + candidate.Id,
+            type: "DELETE"
+        })
+    }
+    this.get = function (candidates) {
+        $.get("/api/candidate", function (data) {
+            data.forEach(function (candidate) {
+                candidates.push(candidate)
+            })
         });
     }
 }
 $(function () {
-    $.get("/api/candidate", function (data) {
-        ko.applyBindings(new CandidatesViewModel(data));
-    });
+    ko.applyBindings(new candidatesViewModel(ko, new candidateService()));
 })
+module.exports = candidatesViewModel;

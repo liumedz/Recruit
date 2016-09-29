@@ -3,5 +3,8 @@
   "private": true,
   "dependencies": {
     "knockout": "3.4.0"
+  },
+  "devDependencies": {
+    "mocha": "3.1.0"
   }
 }
