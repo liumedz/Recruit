@@ -1,48 +1,27 @@
-var assert = require('assert');
-var candidatesViewModel = require('../Scripts/candidates.js')
+var candidates = require('../Scripts/src/candidates.js')
 describe('Candidates', function () {
+    var service;
+    beforeEach(function() {
+        service = jasmine.createSpyObj('service', ['save', 'get','delete']);
+    });         
+     
     describe('#save', function () {
         it('should make one ajax request', function () {
-            var candidateServiceMock = function () {
-                var self = this;
-                self.saveRequestCount = 0;
-                self.save = function () {
-                    self.saveRequestCount++;
-                };
-                self.get = function (candidates) {
-                };
-            };
-            var koMock = function () {
-                this.observableArray = function () { return [{}] }
-            };
-            var service = new candidateServiceMock();
-            var candidateViewModel = new candidatesViewModel(new koMock(), service);
+            
+            var candidateViewModel = new candidates.app.candidatesViewModel(ko, service);
             candidateViewModel.save();
-            assert.equal(1, service.saveRequestCount);
+            expect(service.save).toHaveBeenCalled();
+            expect(service.get).toHaveBeenCalled();
+            expect(service.delete.calls.any()).toBe(false);
         });
     });
     describe('#delete', function () {
         it('should make one ajax request', function () {
-            var candidateServiceMock = function () {
-                var self = this;
-                self.deleteRequestCount = 0;
-                self.save = function () {
-                    self.deleteRequestCount++;
-                };
-                self.get = function (candidates) {
-                };
 
-                self.delete = function () {
-                    deleteRequestCount++;
-                };
-            };
-            var koMock = function () {
-                this.observableArray = function () { return [{}] }
-            };
-            var service = new candidateServiceMock();
-            var candidateViewModel = new candidatesViewModel(new koMock(), service);
+
+            var candidateViewModel = new candidates.app.candidatesViewModel(ko, service);
             candidateViewModel.delete();
-            assert.equal(1, service.deleteRequestCount);
+            expect(service.get).toHaveBeenCalled();
         });
-    });
+        });
 });
