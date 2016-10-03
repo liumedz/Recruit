@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,11 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbInitializer.cs" />
+    <Compile Include="Entities\Abstractions\IEntity.cs" />
     <Compile Include="IDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Candidate.cs" />
-    <Compile Include="Repository\Abstractions\ICandidateRepository.cs" />
-    <Compile Include="Repository\CandidateRepository.cs" />
+    <Compile Include="Repository\Abstractions\IBaseRepository.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

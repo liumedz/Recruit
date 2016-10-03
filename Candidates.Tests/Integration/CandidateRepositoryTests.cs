@@ -9,13 +9,13 @@ namespace Candidates.Integration.Tests
 {
     public class CandidateRepositoryTests
     {
-        private CandidateRepository _repository;
+        private BaseRepository<Candidate> _repository;
 
         public CandidateRepositoryTests()
         {
             var cs = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
             var connection = new SqlConnection(cs);
-            _repository = new CandidateRepository(new SqlConnection(cs));
+            _repository = new BaseRepository<Candidate>(new SqlConnection(cs));
         }
         [Fact]
         public void Should_Throw_Null_Reference_Exception_If_Candidate_Is_Null()
@@ -30,7 +30,8 @@ namespace Candidates.Integration.Tests
                 FirstName = "fname",
                 LastName = "lname",
                 Comment = "comment",
-                Email = "email"
+                Email = "email",
+                Created = DateTime.Now
             };
             _repository.Save(candidate);
             Assert.NotEqual(0, candidate.Id);
@@ -43,7 +44,8 @@ namespace Candidates.Integration.Tests
                 FirstName = "fname",
                 LastName = "lname",
                 Comment = "comment",
-                Email = "email"
+                Email = "email",
+                Created = DateTime.Now
             };
             _repository.Save(candidate);
 
@@ -53,7 +55,8 @@ namespace Candidates.Integration.Tests
                 LastName = "lnameNew",
                 Comment = "commentNew",
                 Email = "emailNew",
-                Id = candidate.Id
+                Id = candidate.Id,
+                Created = DateTime.Now
             };
             _repository.Save(candidateNew);
             var newCandidate = _repository.Get(candidate.Id);
@@ -74,7 +77,14 @@ namespace Candidates.Integration.Tests
         [Fact]
         public void Should_Return_Inserted_Candidate()
         {
-            var candidate = new Candidate();
+            var candidate = new Candidate
+            {
+                FirstName = "fname",
+                LastName = "lname",
+                Comment = "comment",
+                Email = "email",
+                Created = DateTime.Now
+            };
             _repository.Save(candidate);
             Assert.NotEqual(0, candidate.Id);
             var id = candidate.Id;
@@ -85,7 +95,14 @@ namespace Candidates.Integration.Tests
         [Fact]
         public void Should_Delete_Candidate()
         {
-            var candidate = new Candidate();
+            var candidate = new Candidate
+            {
+                FirstName = "fname",
+                LastName = "lname",
+                Comment = "comment",
+                Email = "email",
+                Created = DateTime.Now
+            };
             _repository.Save(candidate);
             _repository.Delete(candidate.Id);
             candidate = _repository.Get(candidate.Id);

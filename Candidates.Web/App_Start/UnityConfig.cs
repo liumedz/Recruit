@@ -1,4 +1,5 @@
 using Candidates.DataAccess;
+using Candidates.DataAccess.Entities;
 using Candidates.DataAccess.Repository;
 using Candidates.DataAccess.Repository.Abstractions;
 using Microsoft.Practices.Unity;
@@ -15,7 +16,7 @@ namespace Candidates.Web
         {
 			var container = new UnityContainer();
             var cs = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
-            container.RegisterType<ICandidateRepository, CandidateRepository>(new InjectionConstructor(new SqlConnection(cs)));
+            container.RegisterType<IBaseRepository<Candidate>, BaseRepository<Candidate>>(new InjectionConstructor(new SqlConnection(cs)));
             container.RegisterType<IDbInitializer, DbInitializer>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

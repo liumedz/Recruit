@@ -1,6 +1,7 @@
 ﻿using Candidates.DataAccess.Entities;
 using Candidates.DataAccess.Repository;
 using Candidates.Tests.Mocks;
+using System;
 using Xunit;
 
 namespace Candidates.Tests
@@ -13,14 +14,15 @@ namespace Candidates.Tests
             var dbCommand = new DbCommandMock();
             var dbConnection = new DbConnectionMock(dbCommand);
 
-            var repository = new CandidateRepository(dbConnection);
+            var repository = new BaseRepository<Candidate>(dbConnection);
 
             var candidate = new Candidate
             {
                 FirstName = "fname",
                 LastName = "lname",
                 Comment = "comment",
-                Email = "email"
+                Email = "email",
+                Created = DateTime.Now
             };
             repository.Save(candidate);
             Assert.NotEqual(0, candidate.Id);
@@ -35,7 +37,7 @@ namespace Candidates.Tests
             var dbCommand = new DbCommandMock();
             var dbConnection = new DbConnectionMock(dbCommand);
 
-            var repository = new CandidateRepository(dbConnection);
+            var repository = new BaseRepository<Candidate>(dbConnection);
 
             var candidate = new Candidate
             {
@@ -43,7 +45,8 @@ namespace Candidates.Tests
                 FirstName = "fname",
                 LastName = "lname",
                 Comment = "comment",
-                Email = "email"
+                Email = "email",
+                Created = DateTime.Now
             };
             repository.Save(candidate);
             Assert.NotEqual(0, candidate.Id);

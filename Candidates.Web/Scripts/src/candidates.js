@@ -1,5 +1,5 @@
 ﻿"use strict";
-var $ = require("../jquery-1.10.2.min.js");
+//var $ = require("../jquery-1.10.2.min.js");
 var app = app || {};
 
 (function (k) {
@@ -58,4 +58,4 @@ var app = app || {};
 })(ko);
 
 
-var exports = module.exports = {app};
+//var exports = module.exports = {app};

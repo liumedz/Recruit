@@ -2,14 +2,15 @@
 using System.Web.Http;
 using Candidates.DataAccess.Repository.Abstractions;
 using Candidates.DataAccess.Entities;
+using System;
 
 namespace Candidates.Api.Controllers
 {
     public class CandidateController : ApiController
     {
-        private ICandidateRepository _repository;
+        private IBaseRepository<Candidate> _repository;
 
-        public CandidateController(ICandidateRepository repository)
+        public CandidateController(IBaseRepository<Candidate> repository)
         {
             _repository = repository;
         }
@@ -32,6 +33,7 @@ namespace Candidates.Api.Controllers
                 if (c == null)
                     return NotFound();
             }
+            candidate.Created = DateTime.Now;
             _repository.Save(candidate);
             return Ok(candidate.Id);
         }
