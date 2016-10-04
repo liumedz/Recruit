@@ -6,8 +6,7 @@ describe('Candidates', function () {
     });
 
     describe('#save', function () {
-        it('should make one ajax request', function () {
-
+        it('should save candidate', function () {
             var candidateViewModel = new candidates.app.candidatesViewModel(ko, service);
             candidateViewModel.save();
             expect(service.save).toHaveBeenCalled();
@@ -16,12 +15,18 @@ describe('Candidates', function () {
         });
     });
     describe('#delete', function () {
-        it('should make one ajax request', function () {
-
-
+        it('should delete candidate', function () {
+            var candidate = { Id: 1 };
+            service.get.and.callFake(function (candidates) {
+                candidates.push(candidate);
+            });
             var candidateViewModel = new candidates.app.candidatesViewModel(ko, service);
-            candidateViewModel.delete();
+            expect(candidateViewModel.candidates().length).toBe(1);
+            candidateViewModel.delete(candidate);
             expect(service.get).toHaveBeenCalled();
+            expect(service.delete).toHaveBeenCalled();
+            expect(service.save.calls.any()).toBe(false);
+            expect(candidateViewModel.candidates().length).toBe(0);
         });
     });
 });
