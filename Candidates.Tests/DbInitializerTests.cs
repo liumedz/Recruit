@@ -20,7 +20,8 @@ namespace Candidates.Tests
             var databaseName = csBuilder.InitialCatalog;
 
             csBuilder.InitialCatalog = "master";
-            var dbInitializer = new DbInitializer();
+            var mapper = new SqlDbTypeMapper();
+            var dbInitializer = new DbInitializer(mapper);
             var created = dbInitializer.EnsureDatabaseCreated(dbConnection, databaseName);
 
             Assert.Equal(false, dbCommand.ScalarExecuted);
@@ -40,7 +41,8 @@ namespace Candidates.Tests
             var databaseName = csBuilder.InitialCatalog;
 
             csBuilder.InitialCatalog = "master";
-            var dbInitializer = new DbInitializer();
+            var mapper = new SqlDbTypeMapper();
+            var dbInitializer = new DbInitializer(mapper);
             dbInitializer.EnsureDatabaseCreated(dbConnection, databaseName);
 
             Assert.Equal(false, dbCommand.ScalarExecuted);
@@ -55,7 +57,8 @@ namespace Candidates.Tests
 
             var cs = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
 
-            var dbInitializer = new DbInitializer();
+            var mapper = new SqlDbTypeMapper();
+            var dbInitializer = new DbInitializer(mapper);
             dbInitializer.CreateTables(dbConnection);
 
             Assert.Equal(false, dbCommand.ScalarExecuted);

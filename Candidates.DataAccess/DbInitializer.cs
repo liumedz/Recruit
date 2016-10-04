@@ -11,6 +11,11 @@ namespace Candidates.DataAccess
 {
     public class DbInitializer : IDbInitializer
     {
+        private ISqlDbTypeMapper _sqlDbMapper;
+        public DbInitializer(ISqlDbTypeMapper mapper)
+        {
+            _sqlDbMapper = mapper;
+        }
         public bool EnsureDatabaseCreated(IDbConnection connection, string databaseName)
         {
             connection.Open();
@@ -96,14 +101,8 @@ namespace Candidates.DataAccess
             {
                 type = Nullable.GetUnderlyingType(type);
             }
-            if (type.Equals(typeof(DateTime)))
-                return "datetime";
-            if (type.Equals(typeof(int)))
-                return "int";
-            if (type.Equals(typeof(string)))
-                return "text";
-            else
-                throw new ArgumentException("Unknown type");
+            var dbType = _sqlDbMapper.GetSqlDbType(type);
+            return dbType.ToString().ToLower();
         }
     }
 }

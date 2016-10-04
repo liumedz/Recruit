@@ -18,6 +18,7 @@ namespace Candidates.Web
             var cs = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
             container.RegisterType<IBaseRepository<Candidate>, BaseRepository<Candidate>>(new InjectionConstructor(new SqlConnection(cs)));
             container.RegisterType<IDbInitializer, DbInitializer>();
+            container.RegisterType<ISqlDbTypeMapper,SqlDbTypeMapper>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
