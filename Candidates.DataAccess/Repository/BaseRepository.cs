@@ -12,8 +12,8 @@ namespace Candidates.DataAccess.Repository
     public class BaseRepository<T> : IBaseRepository<T>
         where T : IEntity
     {
-        private IDbConnection _connection;
-        private string _tableName;
+        protected IDbConnection _connection;
+        protected string _tableName;
         public BaseRepository(IDbConnection connection)
         {
             _connection = connection;
@@ -115,21 +115,22 @@ namespace Candidates.DataAccess.Repository
                 _connection.Close();
             }
         }
-        private void AddParameter(string name, object value, IDbCommand command)
+        protected void AddParameter(string name, object value, IDbCommand command)
         {
             var p = command.CreateParameter();
             p.ParameterName = name;
             p.Value = value ?? DBNull.Value;
             command.Parameters.Add(p);
         }
-        private T FillEntity(PropertyInfo[] properties, IDataReader reader)
+        protected T FillEntity(PropertyInfo[] properties, IDataReader reader)
         {
             var values = new object[properties.Count()];
             reader.GetValues(values);
             var instance = (T)Activator.CreateInstance(typeof(T));
             for (var i = 0; i < values.Length; i++)
             {
-                properties[i].SetValue(instance, values[i]);
+                if (values[i] != DBNull.Value)
+                    properties[i].SetValue(instance, values[i]);
             }
             return instance;
         }

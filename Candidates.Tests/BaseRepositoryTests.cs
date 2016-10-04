@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Candidates.Tests
 {
-    public class CandidateRepositoryTests
+    public class BaseRepositoryTests
     {
         [Fact]
         public void Should_Create_Candidate()

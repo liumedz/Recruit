@@ -67,13 +67,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="CandidateRepositoryTests.cs" />
+    <Compile Include="BaseRepositoryTests.cs" />
     <Compile Include="DbInitializerTests.cs" />
     <Compile Include="Integration\CandidateRepositoryTests.cs" />
     <Compile Include="Mocks\DataReaderMockEmpty.cs" />
     <Compile Include="Mocks\DataReaderMockNotEmpty.cs" />
     <Compile Include="Mocks\DbCommandMock.cs" />
     <Compile Include="Mocks\DbConnectionMock.cs" />
+    <Compile Include="NoteRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

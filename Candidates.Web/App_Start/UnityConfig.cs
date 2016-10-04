@@ -19,7 +19,8 @@ namespace Candidates.Web
             container.RegisterType<IBaseRepository<Candidate>, BaseRepository<Candidate>>(new InjectionConstructor(new SqlConnection(cs)));
             container.RegisterType<IDbInitializer, DbInitializer>();
             container.RegisterType<ISqlDbTypeMapper,SqlDbTypeMapper>();
-
+            container.RegisterType<INoteRepository, NoteRepository>(new InjectionConstructor(new SqlConnection(cs)));
+            
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
