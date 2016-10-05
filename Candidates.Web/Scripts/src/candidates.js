@@ -1,5 +1,5 @@
 ﻿"use strict";
-var $ = require("../jquery-1.10.2.min.js");
+//var $ = require("../jquery-1.10.2.min.js");
 var app = app || {};
 
 (function (k) {
@@ -11,14 +11,14 @@ var app = app || {};
         self.candidates = k.observableArray();
         self.notes = k.observableArray();
         candidateService.get(self.candidates)
-
+        self.currentCandidate;
         this.delete = function (candidate) {
             self.candidates.remove(candidate);
             if (candidate.id != 0)
                 candidateService.delete(candidate);
         }
         this.add = function () {
-            var candidate = { id: 0, firstName: "", lastName: "", email: "", comment: "", created: "" }
+            var candidate = { id: k.observable(0), firstName: "", lastName: "", email: "", comment: "", created: "" }
             self.candidates.push(candidate);
         }
         this.save = function () {
@@ -26,11 +26,12 @@ var app = app || {};
         }
 
         this.openNotes = function (candidate) {
+            self.currentCandidate = candidate;
             noteService.get(candidate, self.notes)
         }
 
-        this.addNote = function (candidate) {
-            var note = { id: 0, notes: "", created: "", candidateId: candidate.id }
+        this.addNote = function (candidatesViewModel) {
+            var note = { id: 0, notes: "", created: "", candidateId: candidatesViewModel.currentCandidate.id() }
             self.notes.push(note);
         }
         this.saveNote = function (note) {
@@ -46,26 +47,28 @@ var app = app || {};
 
     app.candidateService = function () {
         this.save = function (candidate) {
+            var obj = { id: candidate.id(), firstName: candidate.firstName, lastName: candidate.lastName, email: candidate.email, comment: candidate.comment }
             $.ajax({
                 url: "api/candidate",
                 type: "POST",
-                data: JSON.stringify(candidate),
+                data: JSON.stringify(obj),
                 dataType: "json",
                 contentType: "application/json",
                 success: function (id) {
-                    candidate.id = id;
+                    candidate.id(id);
                 }
             });
         }
         this.delete = function (candidate) {
             $.ajax({
-                url: "api/candidate/" + candidate.id,
+                url: "api/candidate/" + candidate.id(),
                 type: "DELETE"
             });
         }
         this.get = function (candidates) {
             $.get("/api/candidate", function (data) {
                 data.forEach(function (candidate) {
+                    candidate.id = k.observable(candidate.id)
                     candidates.push(candidate);
                 });
             });
@@ -92,7 +95,7 @@ var app = app || {};
         }
         this.get = function (candidate, notes) {
             notes.splice(0, notes().length);
-            $.get("/api/note?candidateId=" + candidate.id, function (data) {
+            $.get("/api/note?candidateId=" + candidate.id(), function (data) {
                 data.forEach(function (note) {
                     notes.push(note);
                 });
@@ -105,4 +108,4 @@ var app = app || {};
 })(ko);
 
 
-var exports = module.exports = {app};
+//var exports = module.exports = {app};

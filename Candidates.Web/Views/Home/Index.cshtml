@@ -27,7 +27,7 @@
                 <td><input class='form-control' disabled data-bind='value: created' /></td>
                 <td><btn class="btn btn-success" data-bind='click: $root.save'>Save</btn></td>
                 <td><btn class="btn btn-danger" data-bind='click: $root.delete'>Delete</btn></td>
-                <td><btn class="btn btn-default" data-bind='click: $root.openNotes' data-toggle="modal" data-target="#myModal">Notes</btn></td>
+                <td data-bind='if: id() != 0'><btn class="btn btn-default" data-bind='click: $root.openNotes' data-toggle="modal" data-target="#myModal">Notes</btn></td>
             </tr>
         </tbody>
     </table>
@@ -40,7 +40,7 @@
                 <h4 class="modal-title">Notes</h4>
             </div>
             <div class="modal-body">
-                <btn class="btn btn-primary" data-bind='click: addNote'>Add note</btn>
+                <btn class="btn btn-primary" data-bind='click: $root.addNote'>Add note</btn>
                 <table class="table table-hover">
                     <thead>
                         <tr>
