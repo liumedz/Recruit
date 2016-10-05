@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Configuration;
 using Candidates.DataAccess;
 using System.Data.SqlClient;
+using Newtonsoft.Json.Serialization;
 
 namespace Candidates.Web
 {
@@ -18,6 +19,13 @@ namespace Candidates.Web
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             UnityConfig.RegisterComponents();
+
+
+            GlobalConfiguration.Configuration
+               .Formatters
+               .JsonFormatter
+               .SerializerSettings
+               .ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             var resolver = GlobalConfiguration.Configuration.DependencyResolver;
             var dbInitializer = (IDbInitializer) resolver.GetService(typeof(IDbInitializer));

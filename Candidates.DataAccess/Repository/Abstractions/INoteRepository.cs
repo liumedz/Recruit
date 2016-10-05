@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace Candidates.DataAccess.Repository.Abstractions
 {
-    public interface INoteRepository
+    public interface INoteRepository: IBaseRepository<Note>
     {
-        void Delete(int id);
-        void Save(Note entity);
-        IEnumerable<Note> Get();
-        Note Get(int id);
         IEnumerable<Note> GetByCandidateId(int id);
     }
 }

@@ -16,7 +16,7 @@ describe('Candidates', function () {
     });
     describe('#delete', function () {
         it('should delete candidate', function () {
-            var candidate = { Id: 1 };
+            var candidate = { id: 1 };
             service.get.and.callFake(function (candidates) {
                 candidates.push(candidate);
             });
