@@ -135,7 +135,6 @@
     <Content Include="Scripts\libs\jquery-3.1.1.js" />
     <Content Include="Scripts\libs\knockout-3.4.0.js" />
     <Content Include="Scripts\src\candidates.js" />
-    <Content Include="Test\test.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

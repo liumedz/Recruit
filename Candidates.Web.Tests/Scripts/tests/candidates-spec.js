@@ -1,4 +1,7 @@
-﻿/// <reference path="../dependencies/candidates.js" />
+﻿/// <reference path="../libs/jquery-3.1.1.js" />
+/// <reference path="../libs/knockout-3.4.0.js" />
+/// <reference path="../libs/bootstrap.js" />
+/// <reference path="../dependencies/candidates.js" />
 
 describe('Candidates', function () {
 
