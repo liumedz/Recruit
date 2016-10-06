@@ -2,9 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-@section scripts{
-    <script src="~/Scripts/src/candidates.js"></script>
-}
+
 <h2>Candidates</h2>
 <btn class="btn btn-primary" data-bind='click: add'>Add</btn>
 <div id="candidates">
@@ -33,7 +31,7 @@
     </table>
 </div>
 <div class="modal fade" id="myModal">
-    <div class="modal-dialog" >
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

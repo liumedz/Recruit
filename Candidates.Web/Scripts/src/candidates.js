@@ -1,7 +1,7 @@
 ﻿"use strict";
-//var $ = require("../jquery-1.10.2.min.js");
+var ko = require("knockout")
 var app = app || {};
-
+window.jQuery = $;
 (function (k) {
 
 
@@ -108,4 +108,4 @@ var app = app || {};
 })(ko);
 
 
-//var exports = module.exports = {app};
+var exports = module.exports = {app};

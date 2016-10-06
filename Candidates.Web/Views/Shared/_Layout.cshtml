@@ -6,8 +6,6 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -26,17 +24,13 @@
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="container">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/Scripts/bundle.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/node_modules/knockout/build/output/knockout-latest.js"></script>
-    @RenderSection("Scripts", false)
 </body>
 </html>
