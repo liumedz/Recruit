@@ -1,4 +1,5 @@
 using Candidates.DataAccess;
+using Candidates.DataAccess.Cache;
 using Candidates.DataAccess.Entities;
 using Candidates.DataAccess.Repository;
 using Candidates.DataAccess.Repository.Abstractions;
@@ -19,6 +20,8 @@ namespace Candidates.Web
             container.RegisterType<IBaseRepository<Candidate>, BaseRepository<Candidate>>(new InjectionConstructor(new SqlConnection(cs)));
             container.RegisterType<IDbInitializer, DbInitializer>();
             container.RegisterType<ISqlDbTypeMapper,SqlDbTypeMapper>();
+            container.RegisterType<ICacheService, CacheService>();
+
             container.RegisterType<INoteRepository, NoteRepository>(new InjectionConstructor(new SqlConnection(cs)));
             
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
