@@ -4,7 +4,7 @@
 }
 
 <h2>Candidates</h2>
-<btn class="btn btn-primary" data-bind='click: add'>Add</btn>
+<button class="btn btn-primary" data-bind='click: add'>Add</button>
 <div id="candidates">
     <table class="table table-hover">
         <thead>
@@ -14,6 +14,7 @@
                 <th>Email</th>
                 <th>Comment</th>
                 <th>Created</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: candidates">
@@ -22,15 +23,19 @@
                 <td><input class='form-control' data-bind='value: lastName' /></td>
                 <td><input class='form-control' data-bind='value: email' /></td>
                 <td><input class='form-control' data-bind='value: comment' /></td>
-                <td><input class='form-control' disabled data-bind='value: created' /></td>
-                <td><btn class="btn btn-success" data-bind='click: $root.save'>Save</btn></td>
-                <td><btn class="btn btn-danger" data-bind='click: $root.delete'>Delete</btn></td>
-                <td data-bind='if: id() != 0'><btn class="btn btn-default" data-bind='click: $root.openNotes' data-toggle="modal" data-target="#myModal">Notes</btn></td>
+                <td><input class='form-control' disabled data-bind='value: created' />
+                <td style="white-space: nowrap">
+                    <button class="btn btn-success" data-bind='click: $root.save'>Save</button>
+                    <button class="btn btn-danger" data-bind='click: $root.delete'>Delete</button>
+                    <!-- ko if: id() != 0 -->
+                        <button class="btn btn-default" data-bind='click: $root.openNotes' data-toggle="modal" data-target="#notesModal">Notes</button>
+                    <!-- /ko -->
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="notesModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,20 +43,23 @@
                 <h4 class="modal-title">Notes</h4>
             </div>
             <div class="modal-body">
-                <btn class="btn btn-primary" data-bind='click: $root.addNote'>Add note</btn>
+                <button class="btn btn-primary" data-bind='click: $root.addNote'>Add note</button>
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>Note</th>
                             <th>Created</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody data-bind="foreach: notes">
                         <tr>
                             <td><input class='form-control' data-bind='value: notes' /></td>
                             <td><input class='form-control' disabled data-bind='value: created' /></td>
-                            <td><btn class="btn btn-success" data-bind='click: $root.saveNote'>Save</btn></td>
-                            <td><btn class="btn btn-danger" data-bind='click: $root.deleteNote'>Delete</btn></td>
+                            <td>
+                                <button class="btn btn-success" data-bind='click: $root.saveNote'>Save</button>
+                                <button class="btn btn-danger" data-bind='click: $root.deleteNote'>Delete</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
