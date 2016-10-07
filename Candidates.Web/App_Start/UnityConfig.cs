@@ -21,6 +21,8 @@ namespace Candidates.Web
             container.RegisterType<IDbInitializer, DbInitializer>();
             container.RegisterType<ISqlDbTypeMapper,SqlDbTypeMapper>();
             container.RegisterType<ICacheService, CacheService>();
+            container.RegisterType<ICache, InMemoryCache>();
+
 
             container.RegisterType<INoteRepository, NoteRepository>(new InjectionConstructor(new SqlConnection(cs)));
             

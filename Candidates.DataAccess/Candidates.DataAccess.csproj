@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\CacheService.cs" />
+    <Compile Include="Cache\ICache.cs" />
     <Compile Include="Cache\ICacheService.cs" />
+    <Compile Include="Cache\InMemoryCache.cs" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="Entities\Abstractions\IEntity.cs" />
     <Compile Include="Entities\Note.cs" />

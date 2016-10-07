@@ -8,20 +8,25 @@ namespace Candidates.DataAccess.Cache
 {
     public class CacheService : ICacheService
     {
+        private ICache _cache;
+        public CacheService(ICache cache)
+        {
+            _cache = cache;
+        }
         public T Get<T>(string key, Func<T> getItemCallback) where T : class
         {
-            T item = MemoryCache.Default.Get(key) as T;
+            T item = _cache.Get(key) as T;
             if (item == null)
-            {   
+            {
                 item = getItemCallback();
-                MemoryCache.Default.Add(key, item, DateTime.Now.AddMinutes(10));
+                _cache.Add(key, item);
             }
             return item;
         }
 
         public void Invalidate(string key)
         {
-            MemoryCache.Default.Remove(key);
+            _cache.Remove(key);
         }
     }
 }
