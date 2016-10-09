@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Candidates.DataAccess.Cache
+namespace Candidates.Core.Cache.Abstractions
 {
     public interface ICacheService
     {

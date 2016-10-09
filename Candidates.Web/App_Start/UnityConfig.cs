@@ -1,5 +1,4 @@
 using Candidates.DataAccess;
-using Candidates.DataAccess.Cache;
 using Candidates.DataAccess.Entities;
 using Candidates.DataAccess.Repository;
 using Candidates.DataAccess.Repository.Abstractions;
@@ -7,6 +6,8 @@ using Microsoft.Practices.Unity;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Http;
+using Candidates.Core.Cache;
+using Candidates.Core.Cache.Abstractions;
 using Unity.WebApi;
 
 namespace Candidates.Web
@@ -21,9 +22,8 @@ namespace Candidates.Web
             container.RegisterType<IDbInitializer, DbInitializer>();
             container.RegisterType<ISqlDbTypeMapper,SqlDbTypeMapper>();
             container.RegisterType<ICacheService, CacheService>();
-            container.RegisterType<ICache, InMemoryCache>();
-
-
+            container.RegisterType<ICache, DistributedCache>();
+            
             container.RegisterType<INoteRepository, NoteRepository>(new InjectionConstructor(new SqlConnection(cs)));
             
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

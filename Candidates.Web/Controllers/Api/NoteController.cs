@@ -2,12 +2,9 @@
 using Candidates.DataAccess.Repository.Abstractions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web;
-using Candidates.DataAccess.Cache;
+using Candidates.Core.Cache;
+using Candidates.Core.Cache.Abstractions;
 
 namespace Candidates.Web.Controllers.Api
 {

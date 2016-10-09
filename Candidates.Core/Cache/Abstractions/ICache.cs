@@ -1,4 +1,4 @@
-﻿namespace Candidates.DataAccess.Cache
+﻿namespace Candidates.Core.Cache.Abstractions
 {
     public interface ICache
     {

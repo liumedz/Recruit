@@ -166,6 +166,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Candidates.Core\Candidates.Core.csproj">
+      <Project>{AB66C113-EC73-43EC-9780-1CE46AE219F9}</Project>
+      <Name>Candidates.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Candidates.DataAccess\Candidates.DataAccess.csproj">
       <Project>{56a80d01-556c-4611-939a-404039b88180}</Project>
       <Name>Candidates.DataAccess</Name>

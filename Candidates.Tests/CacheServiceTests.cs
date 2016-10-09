@@ -1,10 +1,5 @@
-﻿using Candidates.DataAccess.Cache;
-using Candidates.Tests.Mocks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Candidates.Tests.Mocks;
+using Candidates.Core.Cache;
 using Xunit;
 
 namespace Candidates.Tests
