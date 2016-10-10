@@ -57,6 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="client.ncconf" />
     <None Include="config.ncconf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -65,8 +66,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
-xcopy "D:\Git\Recruit\packages\Alachisoft.NCache.SDK.4.6\additionalLib\net40\*.dll" "$(ProjectDir)\bin\$(ConfigurationName)\" /Y /I
-xcopy "D:\Git\Recruit\packages\Alachisoft.NCache.SDK.4.6\additionalLib\Oracle40\x64\Oracle.ManagedDataAccess.dll" "$(ProjectDir)\bin\$(ConfigurationName)\" /Y /I</PostBuildEvent>
+xcopy "$(ProjectDir)\..\packages\Alachisoft.NCache.SDK.4.6\additionalLib\net40\*.dll" "$(ProjectDir)\bin\$(ConfigurationName)\" /Y /I
+xcopy "$(ProjectDir)\..\packages\Alachisoft.NCache.SDK.4.6\additionalLib\Oracle40\x64\Oracle.ManagedDataAccess.dll" "$(ProjectDir)\bin\$(ConfigurationName)\" /Y /I</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

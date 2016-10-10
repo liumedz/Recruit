@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Candidates.DataAccess.Entities
 {
+    [Serializable]
     public class Note : IEntity
     {
         public int Id { get; set; }
