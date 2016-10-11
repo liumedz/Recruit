@@ -8,7 +8,7 @@ using Candidates.Web.FeatureToggles;
 
 namespace Candidates.Web.Controllers.Api
 {
-    [FeatureToggle]
+    [FeatureToggle(typeof(NotesFeatureToggle))]
     public class NoteController : ApiController
     {
         private INoteRepository _repository;
