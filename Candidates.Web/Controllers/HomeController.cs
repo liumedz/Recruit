@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Candidates.Web.Models.Home;
+using System.Web.Mvc;
 
 namespace Candidates.Web.Controllers
 {
@@ -7,7 +8,7 @@ namespace Candidates.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return View(new HomeViewModel());
         }
     }
 }

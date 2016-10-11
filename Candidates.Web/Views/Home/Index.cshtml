@@ -1,4 +1,5 @@
-﻿
+﻿@using Candidates.Web.Models.Home
+@model HomeViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -27,47 +28,53 @@
                 <td style="white-space: nowrap">
                     <button class="btn btn-success" data-bind='click: $root.save'>Save</button>
                     <button class="btn btn-danger" data-bind='click: $root.delete'>Delete</button>
+                    @if (Model.NotesFeature.FeatureEnabled)
+                    {
                     <!-- ko if: id() != 0 -->
                         <button class="btn btn-default" data-bind='click: $root.openNotes' data-toggle="modal" data-target="#notesModal">Notes</button>
                     <!-- /ko -->
+                    }
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="modal fade" id="notesModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Notes</h4>
-            </div>
-            <div class="modal-body">
-                <button class="btn btn-primary" data-bind='click: $root.addNote'>Add note</button>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Note</th>
-                            <th>Created</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach: notes">
-                        <tr>
-                            <td><input class='form-control' data-bind='value: notes' /></td>
-                            <td><input class='form-control' disabled data-bind='value: created' /></td>
-                            <td style="white-space: nowrap">
-                                <button class="btn btn-success" data-bind='click: $root.saveNote'>Save</button>
-                                <button class="btn btn-danger" data-bind='click: $root.deleteNote'>Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+@if (Model.NotesFeature.FeatureEnabled)
+{
+    <div class="modal fade" id="notesModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Notes</h4>
+                </div>
+                <div class="modal-body">
+                    <button class="btn btn-primary" data-bind='click: $root.addNote'>Add note</button>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Note</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: notes">
+                            <tr>
+                                <td><input class='form-control' data-bind='value: notes' /></td>
+                                <td><input class='form-control' disabled data-bind='value: created' /></td>
+                                <td style="white-space: nowrap">
+                                    <button class="btn btn-success" data-bind='click: $root.saveNote'>Save</button>
+                                    <button class="btn btn-danger" data-bind='click: $root.deleteNote'>Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+}
