@@ -3,11 +3,12 @@ using Candidates.DataAccess.Repository.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using Candidates.Core.Cache;
 using Candidates.Core.Cache.Abstractions;
+using Candidates.Web.FeatureToggles;
 
 namespace Candidates.Web.Controllers.Api
 {
+    [FeatureToggle]
     public class NoteController : ApiController
     {
         private INoteRepository _repository;

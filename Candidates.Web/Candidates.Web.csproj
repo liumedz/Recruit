@@ -154,6 +154,7 @@
     <Compile Include="Controllers\Api\CandidateController.cs" />
     <Compile Include="Controllers\Api\NoteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="FeatureToggles\FeatureToggleAttribute.cs" />
     <Compile Include="FeatureToggles\NotesFeatureToggle.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
