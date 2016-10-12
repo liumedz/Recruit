@@ -9,7 +9,7 @@ using System.Web.Http;
 using Candidates.Core.Cache;
 using Candidates.Core.Cache.Abstractions;
 using Unity.WebApi;
-
+using Microsoft.Practices.Unity.Configuration;
 namespace Candidates.Web
 {
     public static class UnityConfig
@@ -22,10 +22,9 @@ namespace Candidates.Web
             container.RegisterType<IDbInitializer, DbInitializer>();
             container.RegisterType<ISqlDbTypeMapper,SqlDbTypeMapper>();
             container.RegisterType<ICacheService, CacheService>();
-            container.RegisterType<ICache, DistributedCache>();
-            
             container.RegisterType<INoteRepository, NoteRepository>(new InjectionConstructor(new SqlConnection(cs)));
-            
+
+            container.LoadConfiguration();
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
